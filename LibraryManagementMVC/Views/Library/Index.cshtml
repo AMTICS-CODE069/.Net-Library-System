@@ -1,0 +1,79 @@
+@model List<LibraryMember>
+@{
+    ViewData["Title"] = "Issued Books";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Issued Books</h2>
+    <a class="btn btn-primary" asp-controller="Library" asp-action="IssueBook">Issue a New Book?</a>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No books have been issued yet. Click "Issue a New Book?" to get started.</div>
+}
+else
+{
+    <table class="table table-striped table-bordered align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Member</th>
+                <th>Department</th>
+                <th>Book</th>
+                <th>Issue Date</th>
+                <th>Return Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Fine</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var member in Model)
+            {
+                var status = member.GetDueStatus();
+                var fine = member.CalculateFine();
+                var badgeClass = status switch
+                {
+                    "Returned" => "bg-success",
+                    "Due Soon" => "bg-warning text-dark",
+                    "Overdue" => "bg-danger",
+                    _ => "bg-secondary"
+                };
+
+                <tr>
+                    <td>@member.MemberName</td>
+                    <td>@member.Department</td>
+                    <td>@(member.IssuedBook?.Title ?? "Unknown Book")</td>
+                    <td>@member.IssueDate.ToString("dd-MMM-yyyy")</td>
+                    <td>@(member.ReturnDate.HasValue ? member.ReturnDate.Value.ToString("dd-MMM-yyyy") : "Not Returned")</td>
+                    <td>@member.GetDueDate().ToString("dd-MMM-yyyy")</td>
+                    <td><span class="badge @badgeClass">@status</span></td>
+                    <td>
+                        @if (fine > 0)
+                        {
+                            <span class="text-danger fw-bold">₹@fine.ToString("0.00")</span>
+                        }
+                        else
+                        {
+                            <span class="text-muted">—</span>
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-primary" asp-controller="Library" asp-action="BookDetails" asp-route-id="@member.MemberId">
+                            Book Details
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

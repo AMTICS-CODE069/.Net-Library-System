@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "/home/amtics/Downloads/LibraryManagementMVC/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.LibraryManagementMVC.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.LibraryManagementMVC.props",
+      "PackagePath": "build\\LibraryManagementMVC.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.LibraryManagementMVC.props",
+      "PackagePath": "buildMultiTargeting\\LibraryManagementMVC.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.LibraryManagementMVC.props",
+      "PackagePath": "buildTransitive\\LibraryManagementMVC.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

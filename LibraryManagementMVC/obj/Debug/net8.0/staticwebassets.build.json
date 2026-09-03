@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "iepXWF/LbHPj+plTj79dk0JRr9U/nVFjCQb6c46pg6o=",
+  "Source": "LibraryManagementMVC",
+  "BasePath": "_content/LibraryManagementMVC",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "LibraryManagementMVC/wwwroot",
+      "Source": "LibraryManagementMVC",
+      "ContentRoot": "/home/amtics/Downloads/LibraryManagementMVC/wwwroot/",
+      "BasePath": "_content/LibraryManagementMVC",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/home/amtics/Downloads/LibraryManagementMVC/wwwroot/css/site.css",
+      "SourceId": "LibraryManagementMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/amtics/Downloads/LibraryManagementMVC/wwwroot/",
+      "BasePath": "_content/LibraryManagementMVC",
+      "RelativePath": "css/site.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/site.css"
+    }
+  ]
+}

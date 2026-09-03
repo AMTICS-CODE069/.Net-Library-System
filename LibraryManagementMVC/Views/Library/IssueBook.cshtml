@@ -1,0 +1,86 @@
+@model LibraryMember
+@{
+    ViewData["Title"] = "Issue Book";
+    var books = ViewBag.Books as List<Book>;
+}
+
+<h2>Issue a Book</h2>
+<p class="text-muted">Fill in the details below:</p>
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form asp-controller="Library" asp-action="IssueBook" method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="MemberName" class="form-label"></label>
+                        <input asp-for="MemberName" class="form-control" placeholder="e.g. John Jacobs" />
+                        <span asp-validation-for="MemberName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Department" class="form-label"></label>
+                        <input asp-for="Department" class="form-control" placeholder="e.g. Software Engineering" />
+                        <span asp-validation-for="Department" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" placeholder="e.g. example@amtics.com" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="BookId" class="form-label"></label>
+                        <input asp-for="BookId" class="form-control" placeholder="e.g. 101" />
+                        <span asp-validation-for="BookId" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="IssueDate" class="form-label"></label>
+                            <input asp-for="IssueDate" class="form-control" />
+                            <span asp-validation-for="IssueDate" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="ReturnDate" class="form-label"></label>
+                            <input asp-for="ReturnDate" class="form-control" />
+                            <span asp-validation-for="ReturnDate" class="text-danger"></span>
+                            <div class="form-text">Leave blank if the book has not been returned!!</div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Issue Book</button>
+                    <a class="btn btn-outline-secondary" asp-controller="Library" asp-action="Index">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header bg-dark text-white">Available Books (reference)</div>
+            <ul class="list-group list-group-flush">
+                @if (books != null)
+                {
+                    @foreach (var book in books)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>
+                                <strong>#@book.BookId</strong> — @book.Title
+                                <br /><small class="text-muted">@book.Author</small>
+                            </span>
+                            <span class="badge bg-primary rounded-pill">@book.AvailableCopies left</span>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
